@@ -1,0 +1,3 @@
+   45  cat worldcities.csv | perl -e 'while (<>) { @A = split(/,/); ++$H{$A[1]} }; foreach $K (sort({ $H{$b} <=> $H{$a} } keys(%H))) { print("$K $H{$K}\n") }' | less
+   46  cat worldcities.csv | perl -e 'while (<>) { @A = split(/,/); ++$H{$A[1]} }; foreach $K (sort({ $H{$b} <=> $H{$a} } keys(%H))) { print("$K $H{$K}\n") }' > worldcities.Freq.txt
+   47  history | tail -n 3 > FreqCommand.txt
