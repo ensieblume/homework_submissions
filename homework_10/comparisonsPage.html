@@ -1,0 +1,114 @@
+<!-- A "Comparisons" page that:
+Contains all of the visualizations on the same page so we can easily visually compare them.
+Uses a bootstrap grid for the visualizations.
+The grid must be two visualizations across on screens medium and larger, and 1 across on extra-small and small screens. -->
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>      
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <title>Comparison page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="style.css">  -->
+
+    <!-- <style type="text/css">
+        .mybox {
+          background-color: #ddd;
+          height: 130px;
+          width: 200px;
+          float: left;
+          margin: 10px;
+        }
+    </style> -->
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" >Latitude</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Plots<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="./visualizationPage1.html">vs. Max Temperature</a></li>
+                        <li><a href="./visualizationPage2.html">vs. Humidity</a></li>
+                        <li><a href="./visualizationPage3.html">vs. Cloudiness</a></li>
+                        <li><a href="./visualizationPage4.html">vs. Wind Speed</a></li>
+                    </ul>
+                </li>
+                <li><a href="./ComparisonsPage.html">Comparison</a></li>
+                <li><a href="./DataPage.html">Data</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-6 col-lg-5" style="background-color:white;">
+                <h2>Comparison: Latitude vs X</h2>
+                <hr>
+
+                <p>Click any plot to get in_depth analysis.</p>
+                <hr>
+            </div>
+
+        </div>
+           <div class="row">
+                <div class="col-md-3" style="background-color:white;">
+                    <h4><center>vs. Max Temperature</center></h4>
+                    <div class="media">
+                        <div class="media-left">
+
+                            <a href= 'visualizationPage1.html#'>
+                                <img src="./Resources/Fig1.png"  class="media-object" style="width:350px"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" style="background-color:white;">
+                    <h4><center>vs. Humidity</center></h4>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href= 'visualizationPage2.html#'>
+                              <img src="./Resources/Fig2.png" class="media-object" style="width:350px">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" style="background-color:white;">
+                    <h4><center>vs. Cloudiness</center></h4>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href= 'visualizationPage3.html#'>
+                                <img src="./Resources/Fig3.png" class="media-object" style="width:350px">
+                            </a>   
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" style="background-color:white;">
+                    <h4><center>vs. Wind Speed</center></h4>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href= 'visualizationPage4.html#'>
+                              <img src="./Resources/Fig4.png" class="media-object" style="width:350px">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+</body>
+</html>
+   

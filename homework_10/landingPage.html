@@ -1,0 +1,79 @@
+<!-- A landing page containing:
+
+An explanation of the project.
+Links to each visualizations page. -->
+
+<!doctype html>
+<html lang="en">
+<head>      
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <title>Latitude Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="style.css">  -->
+
+    <style type="text/css">
+        .mybox {
+          background-color: #ddd;
+          height: 130px;
+          width: 200px;
+          float: left;
+          margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" >Latitude</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Plots<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="./visualizationPage1.html">vs. Max Temperature</a></li>
+                        <li><a href="./visualizationPage2.html">vs. Humidity</a></li>
+                        <li><a href="./visualizationPage3.html">vs. Cloudiness</a></li>
+                        <li><a href="./visualizationPage4.html">vs. Wind Speed</a></li>
+                    </ul>
+                </li>
+                <li><a href="./ComparisonsPage.html">Comparison</a></li>
+                <li><a href="./DataPage.html">Data</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-6 col-lg-5" style="background-color:white;">
+                <h2>Summary: Latitude vs. X</h2>
+
+                <hr>
+                <!-- Left-aligned media object -->
+                <div class="mybox"><img src="./Resources/Fig1.png" width="200px"></div>
+                        <p> The purpose of this project was to analyze how weather changes as you get closer to the equater.
+                        To accomplish this analysis. we first pulled data from the OpenWeatherMapAPI to assemble a dataset on over 500 cities.
+                        </p>
+                        <p>After assembling the dataset, we used Matplotlib to plot various aspects of the weather vs. latitude.
+                        Factors we looked at included:temperature, cloudiness, windspeed, and humidity. This site provides the source data 
+                        and visualizations created as part of the analysis,as well as explanations and descriptions of any trends and correlations witnessed.
+                        </p>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-7" style="background-color:white;">
+                <h3>Visualizations</h3>
+                <hr>
+                <div class="mybox"><img src="./Resources/Fig1.png" width="200px"></div>
+                <div class="mybox"><img src="./Resources/Fig2.png" width="200px"></div>
+                <div class="mybox"><img src="./Resources/Fig3.png" width="200px"></div>
+                <div class="mybox"><img src="./Resources/Fig4.png" width="200px"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+   
+	      
