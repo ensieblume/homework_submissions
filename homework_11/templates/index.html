@@ -5,20 +5,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Stock!</title>
+  <title>Mission to Mars</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 
 <body>
-    <div class="container text-center">
-      <h1 class="jumbotron">Inventory</h1>
-      <div>
-        <!-- write a for loop that lists out your data and accesses the values using dot notation. -->
-          <p>{{ inventory['hemisphere_0_title'] }}</p>
-          <img src="{{ inventory['hemisphere_0_img_url'] }}">
-          <p>{{ inventory['hemisphere_0_title'] }}</p>
+  <div class="container text-center">
+    <h1 class="jumbotron">Mission to Mars</h1>
+    <h4><a href="/scrape">Scrape New Data</a></h4>
+  </div>
+  <h2>Latest Mars News</h2>
+  <h4>{{ inventory['latest_news_title'] }}</h4>
+  <p>{{ inventory['latest_news_paragraph'] }}</p>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8 col-md-8 col-lg-8" style="background-color:white;">
+          <img src="{{ inventory['featured_image_url'] }}">
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4" style="background-color:white;">
+          <h4>Current Weather on Mars</h4>
+          <p>{{ inventory['mars_weather'] }}</p>
+          <p>{{ inventory['html_table']|safe }}</p>
       </div>
     </div>
-  </body>
-
+  </div>
+  <br>
+  <br>
+  <div class="container text-center">
+      <h2>Mars Hemispheres</h2>
+      <br>
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6" style="background-color:white;">
+          <img src="{{ inventory['hemisphere_0_img_url'] }}" width="500px">
+          <h4>{{ inventory['hemisphere_0_title'] }}</h4>
+          
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6" style="background-color:white;">
+          <img src="{{ inventory['hemisphere_1_img_url'] }}" width="500px">
+          <h4>{{ inventory['hemisphere_1_title'] }}</h4>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6" style="background-color:white;">
+          <img src="{{ inventory['hemisphere_2_img_url'] }}" width="500px">
+          <h4>{{ inventory['hemisphere_2_title'] }}</h4>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6" style="background-color:white;">
+          <img src="{{ inventory['hemisphere_3_img_url'] }}" width="500px">
+          <h4>{{ inventory['hemisphere_3_title'] }}</h4>
+        </div>
+      </div>
+            
+  <!-- <div>
+    <p>{{ inventory['hemisphere_0_title'] }}</p>
+    <img src="{{ inventory['hemisphere_0_img_url'] }}">
+    <p>{{ inventory['hemisphere_0_title'] }}</p> -->
+  </div>
+</body>
 </html>
+<!-- {{ inventory[''] }} -->

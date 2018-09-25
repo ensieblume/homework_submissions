@@ -3,7 +3,7 @@ import pymongo
 from splinter import Browser
 from splinter.exceptions import ElementDoesNotExist
 from bs4 import BeautifulSoup
-from flask import Flask, render_template
+from flask import Flask, Markup, render_template
 
 # Flask
 app = Flask(__name__)
@@ -50,50 +50,23 @@ def scrape_and_save():
     executable_path = {'executable_path': 'chromedriver.exe'}
     browser = Browser('chrome', **executable_path, headless=False)
 
-    # In[5]:
-
-
     url = 'https://mars.nasa.gov/news/'
     browser.visit(url)
-
-
-    # In[6]:
-
 
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
 
-
-    # In[7]:
-
-
     list_text = soup.find('div', class_= 'list_text')
     list_text
-
-
-    # In[8]:
-
 
     title = soup.find('div', class_='content_title')
     title
 
-
-    # In[9]:
-
-
     latest_news_title = title.find('a').text
     latest_news_title
 
-
-    # In[10]:
-
-
     latest_news_paragraph = soup.find('div', class_='article_teaser_body').text
     latest_news_paragraph
-
-
-    # In[11]:
-
 
     # Use splinter to navigate the site and find the image url for the current Featured Mars Image and assign the url string
     # to a variable called featured_image_url.
@@ -109,67 +82,31 @@ def scrape_and_save():
     url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
     browser.visit(url) 
 
-
-    # In[13]:
-
-
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
-
-
-    # In[14]:
-
 
     full_image = soup.find('a', class_='button fancybox')
     full_image
 
-
-    # In[15]:
-
-
     full_image_url = full_image['data-fancybox-href']
     full_image_url
 
-
-    # In[16]:
-
-
     featured_image_url = 'https://www.jpl.nasa.gov' + full_image['data-fancybox-href']
     featured_image_url
-
-
-    # In[17]:
-
 
     # Visit the Mars Weather twitter account here and scrape the latest Mars weather tweet from the page.
     # Save the tweet text for the weather report as a variable called mars_weather.
     # Example:
     # mars_weather = 'Sol 1801 (Aug 30, 2017), Sunny, high -21C/-5F, low -80C/-112F, pressure at 8.82 hPa, daylight 06:09-17:55'
 
-
-    # In[18]:
-
-
     url = 'https://twitter.com/marswxreport?lang=en'
     browser.visit(url) 
-
-
-    # In[19]:
-
 
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
 
-
-    # In[20]:
-
-
     tweets = soup.find_all('li', class_='js-stream-item')
     # tweets
-
-
-    # In[21]:
-
 
     # Find the latest tweet by 'Mars Weather', i.e. not a retweet
     for tweet in tweets:
@@ -178,85 +115,37 @@ def scrape_and_save():
     author_block = tweet.find('span', class_='FullNameGroup')
     author_block.text
 
-
-    # In[22]:
-
-
     text_container = tweet.find('div', class_='js-tweet-text-container')
     text_container
 
-
-    # In[23]:
-
-
     mars_weather = text_container.text.strip()
     mars_weather
-
-
-    # In[24]:
-
 
     # Visit the Mars Facts webpage here and use Pandas to scrape the table containing facts about the planet
     # including Diameter, Mass, etc.
     # Use Pandas to convert the data to a HTML table string.
 
-
-    # In[25]:
-
-
     url = 'https://space-facts.com/mars/'
-
-
-    # In[26]:
-
 
     # Use the read_html function in Pandas to automatically scrape any tabular data from a page.
     tables = pd.read_html(url)
     tables
 
-
-    # In[27]:
-
-
     type(tables)
-
-
-    # In[28]:
-
 
     df = tables[0]
     df.columns = ['Facts about Mars', 'info']
     df
 
-
-    # In[29]:
-
-
     type(df)
 
-
-    # In[30]:
-
-
-    html_table = df.to_html()
+    html_table = df.to_html(index=False)
     html_table
-
-
-    # In[31]:
-
 
     # Strip unwanted newlines to clean up the table
     html_table.replace('\n', '')
 
-
-    # In[32]:
-
-
     df.to_html('table.html', index=False)
-
-
-    # In[33]:
-
 
     # Visit the USGS Astrogeology site here to obtain high resolution images for each of Mar's hemispheres.
     # You will need to click each of the links to the hemispheres in order to find the image url to the full resolution image.
@@ -272,25 +161,13 @@ def scrape_and_save():
     #     {"title": "Syrtis Major Hemisphere", "img_url": "..."},
     #]
 
-
-    # In[34]:
-
-
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
 
-
-    # In[35]:
-
-
     divs = soup.find_all('div', class_='description')
     divs
-
-
-    # In[36]:
-
 
     hemisphere_image_urls = []
     for div in divs:
@@ -299,10 +176,6 @@ def scrape_and_save():
         title = div.find('h3').text
         hemisphere_image_urls.append({'title': title, 'pageURL': href})
         print(hemisphere_image_urls)
-
-
-    # In[42]:
-
 
     for hemisphere_image_url in hemisphere_image_urls:
         url = hemisphere_image_url['pageURL']
@@ -330,6 +203,7 @@ def scrape_and_save():
     dict['featured_image_url'] = featured_image_url
 
     dict['mars_weather'] = mars_weather
+    dict['html_table'] = Markup(html_table)
 
     dict['hemisphere_0_title'] = hemisphere_image_urls[0]['title']
     dict['hemisphere_0_img_url'] = hemisphere_image_urls[0]['img_url']
@@ -348,4 +222,4 @@ def scrape_and_save():
 
 # With debug=True, Flask server will auto-reload when there are code changes
 if __name__ == '__main__':
-	app.run(debug=False)
+	app.run(debug=True)
