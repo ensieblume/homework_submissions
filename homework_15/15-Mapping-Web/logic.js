@@ -1,7 +1,7 @@
 // Store our API endpoint inside queryUrl
 //  collect data each day (24 hours)
-var queryUrl = "http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2014-01-03&endtime=" +
-  "2014-01-04&maxlongitude=-69.52148437&minlongitude=-123.83789062&maxlatitude=48.74894534&minlatitude=25.16517337";
+var queryUrl = "http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2014-01-01&endtime=" +
+  "2014-01-07&maxlongitude=-69.52148437&minlongitude=-123.83789062&maxlatitude=48.74894534&minlatitude=25.16517337";
 
 // Perform a GET request to the query URL
 d3.json(queryUrl, function(data) {
@@ -20,6 +20,7 @@ function createFeatures(earthquakeData) {
 
     var color, fillColor;
     if (feature.properties.mag > 3) {
+
       color = 'red';
       fillColor = '#ff0000';
     } else if (feature.properties.mag > 2) {
@@ -38,7 +39,7 @@ function createFeatures(earthquakeData) {
     }).bindPopup("<h3>" + feature.properties.title + "</h3><hr><p>" + new Date(feature.properties.time) + "</p>").addTo(myMap);
   
   //  layer.bindPopup("<h3>" + feature.properties.place +
-  //    "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
+  //      "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
   }
 
   // Create a GeoJSON layer containing the features array on the earthquakeData object
